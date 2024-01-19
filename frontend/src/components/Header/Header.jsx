@@ -4,6 +4,7 @@ import { Container, Row, Button } from 'reactstrap'
 import { NavLink, Link } from 'react-router-dom'
 
 import logo from '../../assets/images/logo.png'
+import './header.css'
 
 // Navigation header
 const nav__links=[
@@ -12,7 +13,7 @@ const nav__links=[
     display: 'Home'
   },
   {
-    path: '#',
+    path: '/about',
     display: 'About'
   },
   {
@@ -39,7 +40,14 @@ const Header = () => {
               <ul className="menu d-flex align-items-center gap-5">
                 {nav__links.map((item, index) => (
                   <li className="nav__item" key={index}>
-                    <NavLink to={item.path}>{item.display}</NavLink>
+                    <NavLink 
+                      to={item.path} 
+                      // active link
+                      className={navClass => navClass.isActive ? "active__link" : ""
+                      }
+                    >
+                      {item.display}
+                    </NavLink>
                   </li>
                 ))}
               </ul>
@@ -55,6 +63,10 @@ const Header = () => {
                     <Link to='/register'>Register</Link>
                   </Button>
               </div>
+              {/*========= mobile menu =========*/}
+              <span className="mobile__menu">
+                <i class="ri-menu-line"></i>
+              </span>
             </div>
           </div>
         </Row>

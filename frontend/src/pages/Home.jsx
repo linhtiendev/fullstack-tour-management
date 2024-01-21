@@ -13,6 +13,7 @@ import Subtitle from '../shared/Subtitle'
 import SearchBar from '../shared/SearchBar'
 import ServiceList from '../services/ServiceList'
 import FeaturedTourList from '../components/Featured-tours/FeaturedTourList'
+import MasonryImagesGallery from '../components/Image-gallery/MasonryImagesGallery'
 
 const Home = () => {
   return (
@@ -125,6 +126,23 @@ const Home = () => {
         </Container>
       </section>
       {/* ================ experience section end =============== */}
+
+      {/* ================ gallery section start =============== */}
+      <section>
+        <Container>
+          <Row>
+            <Col lg='12'>
+              <Subtitle subtitle={'Đánh dấu kỉ niệm'}/>
+              <h2 className='gallery__title'>Những kỉ niệm được trưng bày</h2>
+            </Col>
+            <Col lg='12'>
+              <MasonryImagesGallery />
+            </Col>
+          </Row>
+        </Container>
+      </section>
+      {/* ================ gallery section end =============== */}
+
     </>
   )
 }

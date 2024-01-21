@@ -10,6 +10,7 @@ import worldImg from '../assets/images/world.png'
 import Subtitle from '../shared/Subtitle'
 
 import SearchBar from '../shared/SearchBar'
+import ServiceList from '../services/ServiceList'
 
 const Home = () => {
   return (
@@ -37,7 +38,7 @@ const Home = () => {
               </div>
             </Col>
             <Col lg='2'>
-              <div className="hero__img-box mt-5">
+              <div className="hero__img-box">
                 <img src={heroImg} alt=''/>
               </div>
             </Col>
@@ -47,7 +48,7 @@ const Home = () => {
               </div>
             </Col>
             <Col lg='2'>
-              <div className="hero__img-box">
+              <div className="hero__img-box mt-5">
                 <img src={heroImg02} alt=''/>
               </div>
             </Col>
@@ -56,6 +57,20 @@ const Home = () => {
         </Container>
       </section>
       {/* ==================== hero section end ================== */}
+      
+      {/* ==================== services section start ================== */}
+      <section>
+        <Container>
+          <Row>
+            <Col lg='3'>
+              <h5 className="services__subtitle">Dịch vụ của chúng tôi</h5>
+              <h2 className="services__title">Dịch vụ tốt nhất được cung cấp bởi Travel World</h2>
+            </Col>
+            <ServiceList />
+          </Row>
+        </Container>
+      </section>
+      {/* ==================== services section end ================== */}
     </>
   )
 }

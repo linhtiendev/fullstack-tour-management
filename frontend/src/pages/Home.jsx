@@ -6,6 +6,7 @@ import heroImg from '../assets/images/hero-img01.jpg'
 import heroImg02 from '../assets/images/hero-img02.jpg'
 import herovideo from '../assets/images/hero-video.mp4'
 import worldImg from '../assets/images/world.png'
+import experienceImg from '../assets/images/experience.png'
 
 import Subtitle from '../shared/Subtitle'
 
@@ -86,6 +87,44 @@ const Home = () => {
         </Container>
       </section>
       {/* ================ featured tour section end =============== */}
+
+      {/* ================ experience section start =============== */}
+      <section>
+        <Container>
+          <Row>
+            <Col lg='6'>
+              <div className="experience__content">
+                <Subtitle subtitle={'Trải Nghiệm'}/>
+                <h2>Với đội ngũ dày dặn kinh nghiệm <br /> chúng tôi sẽ phục vụ bạn</h2>
+                <p>Những chuyến du lịch đặc biệt, những khám phá mới
+                  <br />
+                  mở ra những cánh cửa về địa điểm du lịch nổi tiếng
+                </p>
+              </div>
+              <div className="counter__wrapper d-flex align-items-center gap-5">
+                <div className="counter__box">
+                  <span>12k+</span>
+                  <h6>Chuyến đi thành công</h6>
+                </div>
+                <div className="counter__box">
+                  <span>2k+</span>
+                  <h6>Khách hàng thân thiết</h6>
+                </div>
+                <div className="counter__box">
+                  <span>10</span>
+                  <h6>Năm kinh nghiệm</h6>
+                </div>
+              </div>
+            </Col>
+            <Col lg='6'>
+              <div className="experience__img">
+                <img src={experienceImg} alt="" />
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </section>
+      {/* ================ experience section end =============== */}
     </>
   )
 }

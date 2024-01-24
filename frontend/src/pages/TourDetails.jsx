@@ -9,6 +9,8 @@ import tourData from '../assets/data/tours'
 
 import calculateRating from '../utils/avgRating'
 
+import Booking from '../components/Booking/Booking'
+
 const TourDetails = () => {
 
   const {id} = useParams()
@@ -123,6 +125,10 @@ const TourDetails = () => {
                 </div>
                 {/* ========== tour reviews section end ========== */}
               </div>
+            </Col>
+
+            <Col lg='4'>
+              <Booking tour={tour} avgRating={avgRating}/>
             </Col>
           </Row>
         </Container>

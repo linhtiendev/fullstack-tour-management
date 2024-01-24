@@ -10,6 +10,7 @@ import tourData from '../assets/data/tours'
 import calculateRating from '../utils/avgRating'
 
 import Booking from '../components/Booking/Booking'
+import NewsLetter from '../shared/Newsletter'
 
 const TourDetails = () => {
 
@@ -133,6 +134,7 @@ const TourDetails = () => {
           </Row>
         </Container>
       </section>
+      <NewsLetter />
     </>
   )
 }

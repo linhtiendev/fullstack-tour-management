@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import '../styles/tour-details.css'
 
 import avatar from '../assets/images/avatar.jpg'
@@ -12,6 +12,8 @@ import calculateRating from '../utils/avgRating'
 const TourDetails = () => {
 
   const {id} = useParams()
+  const reviewMsgRef = useRef('')
+  const [tourRating, setTourRating] = useState(null)
 
   // This is an static data later we will call our API and load our data from db
   const tour = tourData.find(tour => tour.id === id)
@@ -24,6 +26,15 @@ const TourDetails = () => {
 
   // format date
   const options = { day: 'numeric', month: 'long', year: 'numeric'}
+
+  //submit request to the server
+  const submitHandler = e => {
+    e.preventDefault()
+    const reviewText = reviewMsgRef.current.value
+    // alert(`${reviewText}, ${tourRating}`)
+
+    //later will call our api
+  }
 
   return (
     <>
@@ -57,19 +68,27 @@ const TourDetails = () => {
                 {/* ========== tour reviews section start ========== */}
                 <div className="tour__riviews mt-4">
                   <h4>Reviews ({reviews.length} reviews)</h4>
-                  <Form>
+                  <Form onSubmit={submitHandler}>
                     <div className="d-flex align-items-center gap-3 mb-4 
                     rating__group">
-                      <span>1 <i className="ri-star-s-fill"></i></span>
-                      <span>2 <i className="ri-star-s-fill"></i></span>
-                      <span>3 <i className="ri-star-s-fill"></i></span>
-                      <span>4 <i className="ri-star-s-fill"></i></span>
-                      <span>5 <i className="ri-star-s-fill"></i></span>
+                      <span onClick={() => setTourRating(1)}>1 <i className="ri-star-s-fill"></i></span>
+                      <span onClick={() => setTourRating(2)}>2 <i className="ri-star-s-fill"></i></span>
+                      <span onClick={() => setTourRating(3)}>3 <i className="ri-star-s-fill"></i></span>
+                      <span onClick={() => setTourRating(4)}>4 <i className="ri-star-s-fill"></i></span>
+                      <span onClick={() => setTourRating(5)}>5 <i className="ri-star-s-fill"></i></span>
                     </div>
 
                     <div className="review__input">
-                      <input type="text" placeholder='Chia sẻ suy nghĩ của bạn' />
-                      <button className="btn primary__btn text-white" type="submit">
+                      <input 
+                        type="text" ref={reviewMsgRef} 
+                        placeholder='Chia sẻ suy nghĩ của bạn'
+                        required
+                      />
+                      <button                        
+                        className="btn primary__btn text-white" 
+                        type="submit"
+
+                      >
                         Submit
                       </button>
                     </div>           

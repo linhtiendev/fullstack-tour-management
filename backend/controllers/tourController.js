@@ -65,8 +65,21 @@ export const deleteTour = async (req, res) => {
 
 // get single tour
 export const getSingleTour = async (req, res) => {
+    const id = req.params.id;
+
     try {
-    } catch (err) {}
+        const tour = await Tour.findById(id);
+        res.status(200).json({
+            success: true,
+            message: "Successfully",
+            data: tour,
+        });
+    } catch (err) {
+        res.status(404).json({
+            success: false,
+            message: "Not found",
+        });
+    }
 };
 
 // get all tour

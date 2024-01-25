@@ -71,7 +71,7 @@ export const getSingleTour = async (req, res) => {
         const tour = await Tour.findById(id);
         res.status(200).json({
             success: true,
-            message: "Successfully",
+            message: "Successful",
             data: tour,
         });
     } catch (err) {
@@ -84,6 +84,24 @@ export const getSingleTour = async (req, res) => {
 
 // get all tour
 export const getAllTour = async (req, res) => {
+    // for pagination
+    const page = parseInt(req.query.page);
+
     try {
-    } catch (err) {}
+        const tours = await Tour.find({})
+            .skip(page * 8) //pagination (8)
+            .limit(8);
+
+        res.status(200).json({
+            success: true,
+            message: "Successful",
+            count: tours.length,
+            data: tours,
+        });
+    } catch (err) {
+        res.status(404).json({
+            success: false,
+            message: "Not found",
+        });
+    }
 };

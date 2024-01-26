@@ -46,7 +46,7 @@ export const login = async (req, res) => {
 
         // if user is exists then check the password or compare the password
         // (hàm so sánh password)
-        const checkCorrectPassword = bcrypt.compare(
+        const checkCorrectPassword = await bcrypt.compare(
             req.body.password,
             user.password
         );

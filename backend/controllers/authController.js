@@ -80,9 +80,11 @@ export const login = async (req, res) => {
         })
             .status(200)
             .json({
+                token,
                 success: true,
                 message: "succeccfully login",
                 data: { ...rest },
+                role,
             });
     } catch (err) {
         res.status(500).json({

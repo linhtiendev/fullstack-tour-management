@@ -1,16 +1,18 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import '../styles/tour-details.css'
 
 import avatar from '../assets/images/avatar.jpg'
 
 import { Container, Row, Col, Form, ListGroup } from 'reactstrap'
 import { useParams } from 'react-router-dom'
-import tourData from '../assets/data/tours'
 
 import calculateRating from '../utils/avgRating'
 
 import Booking from '../components/Booking/Booking'
 import NewsLetter from '../shared/Newsletter'
+
+import useFetch from './../hooks/useFetch'
+import {BASE_URL} from './../utils/config'
 
 const TourDetails = () => {
 
@@ -18,8 +20,8 @@ const TourDetails = () => {
   const reviewMsgRef = useRef('')
   const [tourRating, setTourRating] = useState(null)
 
-  // This is an static data later we will call our API and load our data from db
-  const tour = tourData.find(tour => tour.id === id)
+  // fetch data from database
+  const {data: tour, loading, error} = useFetch(`${BASE_URL}/tours/${id}`)
 
   // destructure properties from tour object
   const {photo, title, desc, price, address, reviews, city, distance, maxGroupSize} = tour
@@ -39,11 +41,18 @@ const TourDetails = () => {
     //later will call our api
   }
 
+  useEffect(() => {
+    window.scrollTo(0,0)
+  },[tour])
+
   return (
     <>
       <section>
         <Container>
-          <Row>
+          {loading && <h4 className='text-center pt-5'>Loading...</h4>}
+          {error && <h4 className='text-center pt-5'>{error}</h4>}
+          {
+            !loading && !error && <Row>
             <Col lg='8'>
               <div className="tour__content">
                 <img src={photo} alt="" />
@@ -70,7 +79,7 @@ const TourDetails = () => {
                 </div>
                 {/* ========== tour reviews section start ========== */}
                 <div className="tour__riviews mt-4">
-                  <h4>Reviews ({reviews.length} reviews)</h4>
+                  <h4>Reviews ({reviews?.length} reviews)</h4>
                   <Form onSubmit={submitHandler}>
                     <div className="d-flex align-items-center gap-3 mb-4 
                     rating__group">
@@ -90,7 +99,6 @@ const TourDetails = () => {
                       <button                        
                         className="btn primary__btn text-white" 
                         type="submit"
-
                       >
                         Submit
                       </button>
@@ -132,6 +140,7 @@ const TourDetails = () => {
               <Booking tour={tour} avgRating={avgRating}/>
             </Col>
           </Row>
+          }
         </Container>
       </section>
       <NewsLetter />
